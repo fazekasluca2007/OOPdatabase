@@ -10,6 +10,7 @@ namespace OOPadatbazis
     {
         static void Main(string[] args)
         {
+ 
         }
     }
 }
