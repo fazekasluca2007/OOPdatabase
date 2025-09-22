@@ -14,5 +14,6 @@ namespace OOPadatbazis.Services
 
         object DeleteRecord(int id);
         object UpdateRecord(int id, object updateRecord);
+
     }
 }

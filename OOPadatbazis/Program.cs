@@ -12,7 +12,11 @@ namespace OOPadatbazis
         static void Main(string[] args)
         {
             
-            ISqlStatements sqlStatements = new TableBooks();
+            ISqlStatements sqlStatements = new TableCars();
+            Console.Write("Kérem az adatbázist , amibőla lekérdezést szeretné: ");
+            string table=Console.ReadLine();
+            Console.Write("Válasszon lekérdezést. ");
+
 
             /*foreach (var item in sqlStatements.GetAllBooks())
             {
@@ -43,23 +47,22 @@ namespace OOPadatbazis
             };
 
             sqlStatements.AddNewRecord(book);*/
-            Console.Write("Kérem a könyv id-t: ");
-            int id=int.Parse(Console.ReadLine());
-            Console.WriteLine("Kérem a könyv címét: ");
-            string cim = Console.ReadLine();
-            Console.WriteLine("Kérem a könyv szerzőjét: ");
-            string szerzo = Console.ReadLine();
-            Console.WriteLine("Kérem a könyv kiadási évét: ");
+           
+            Console.WriteLine("Kérem az autó márkáját: ");
+            string marka = Console.ReadLine();
+            Console.WriteLine("Kérem az autó típusát: ");
+            string tipus = Console.ReadLine();
+            Console.WriteLine("Kérem a dátumot: ");
             string datum = Console.ReadLine();
 
-            var book = new
+            var car = new
             {
-                Title = cim,
-                Author = szerzo,
-                Release = datum,
+                Brand = marka,
+                Type = tipus,
+                mDate = datum,
 
             };
-            Console.WriteLine(sqlStatements.UpdateRecord(id,book));
+            Console.WriteLine(sqlStatements.AddNewRecord(car));
 
 
 

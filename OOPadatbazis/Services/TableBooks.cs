@@ -12,9 +12,9 @@ namespace OOPadatbazis.Services
 {
     internal class TableBooks : ISqlStatements
     {
+        Connect conn = new Connect();     
         public object AddNewRecord(object newBook)
         {
-            Connect conn=new Connect("library");
             conn.Connection.Open();
 
 
@@ -32,7 +32,6 @@ namespace OOPadatbazis.Services
         public object DeleteRecord(int id)
         {
 
-            Connect conn = new Connect("library");
             conn.Connection.Open();
             string sql = "DELETE FROM books WHERE id=@id";
             MySqlCommand cmd = new MySqlCommand(sql, conn.Connection);
@@ -45,7 +44,7 @@ namespace OOPadatbazis.Services
         public List<object> GetAllRecords()
         {
            List<object> result= new List<object>();
-            Connect conn = new Connect("library");
+            
             conn.Connection.Open();
             string sql = "SELECT * FROM books";
 
@@ -73,7 +72,7 @@ namespace OOPadatbazis.Services
         }
         public object GetById(int id)
         {
-            Connect conn = new Connect("library");
+           
             conn.Connection.Open();
 
 
@@ -97,7 +96,7 @@ namespace OOPadatbazis.Services
 
         public object UpdateRecord(int id, object updatebook)
         {
-            Connect conn = new Connect("library");
+           
             conn.Connection.Open();
             string sql = "UPDATE `books` SET `title`=@title,`author`=@author,`releaseDate`=@release WHERE id=@id";
             MySqlCommand cmd = new MySqlCommand( sql, conn.Connection);
@@ -107,6 +106,11 @@ namespace OOPadatbazis.Services
             cmd.Parameters.AddWithValue("@author", book[1].GetValue(updatebook));
             cmd.Parameters.AddWithValue("@release", book[2].GetValue(updatebook));
             cmd.ExecuteNonQuery();
+            conn.Connection.Close();
+            return new
+            {
+                Message = "Sikeres frissítés"
+            };
            
 
 
