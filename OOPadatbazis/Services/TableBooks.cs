@@ -3,6 +3,7 @@ using Mysqlx.Crud;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices.WindowsRuntime;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,6 +27,19 @@ namespace OOPadatbazis.Services
             cmd.ExecuteNonQuery();
             conn.Connection.Close();
             return book;
+        }
+
+        public object DeleteRecord(int id)
+        {
+
+            Connect conn = new Connect("library");
+            conn.Connection.Open();
+            string sql = "DELETE FROM books WHERE id=@id";
+            MySqlCommand cmd = new MySqlCommand(sql, conn.Connection);
+            cmd.Parameters.AddWithValue("@id", id);
+            cmd.ExecuteNonQuery ();
+            conn.Connection.Close();
+            return new { Message = "Sikeres törlés" };
         }
 
         public List<object> GetAllRecords()
@@ -79,6 +93,11 @@ namespace OOPadatbazis.Services
             
             conn.Connection.Close();
             return book;
+        }
+
+        public object UpdateRecord(int id, object updatebook)
+        {
+            throw new NotImplementedException();
         }
     }
 }

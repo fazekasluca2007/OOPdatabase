@@ -26,7 +26,8 @@ namespace OOPadatbazis
             var book = item.GetType().GetProperties();
             Console.WriteLine($"{book[1].Name}={book[1].GetValue(item)}");*/
 
-            Console.WriteLine("Kérem a könyv címét: ");
+            /*Feladat3
+             * Console.WriteLine("Kérem a könyv címét: ");
             string cim=Console.ReadLine();
             Console.WriteLine("Kérem a könyv szerzőjét: ");
             string szerzo = Console.ReadLine();
@@ -41,7 +42,10 @@ namespace OOPadatbazis
 
             };
 
-            sqlStatements.AddNewRecord(book);
+            sqlStatements.AddNewRecord(book);*/
+            Console.Write("Kérem a törlendő rekord id-t: ");
+           Console.Write(sqlStatements.DeleteRecord(int.Parse(Console.ReadLine())));
+
 
 
 
