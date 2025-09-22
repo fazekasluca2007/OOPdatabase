@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OOPadatbazis.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,18 +11,21 @@ namespace OOPadatbazis
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Kérem az adatbázis nevét");
-            string dbName=Console.ReadLine();
+            
+            ISqlStatements sqlStatements = new TableBooks();
 
-            Console.WriteLine("Kérem a felhasználó nevét");
-            string userName = Console.ReadLine();
+            /*foreach (var item in sqlStatements.GetAllBooks())
+            {
+                var book= item.GetType().GetProperties();
+                Console.WriteLine($"{book[0].Name}={book[0].GetValue(item)}, {book[1].Name}={book[1].GetValue(item)}");
 
-            Console.WriteLine("Kérem a felhasználó jelszavát");
-            string userPassword = Console.ReadLine();
-
-            Connect c=new Connect(dbName, userName, userPassword);
-
-
+            }*/
+            //Feladat2
+            Console.Write("Kérem a rekord id-t: ");
+            var item=sqlStatements.GetById(int.Parse(Console.ReadLine()));
+            var book = item.GetType().GetProperties();
+            Console.WriteLine($"{book[1].Name}={book[1].GetValue(item)}");
+           
         }
     }
 }
