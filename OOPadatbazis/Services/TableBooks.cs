@@ -97,7 +97,20 @@ namespace OOPadatbazis.Services
 
         public object UpdateRecord(int id, object updatebook)
         {
-            throw new NotImplementedException();
+            Connect conn = new Connect("library");
+            conn.Connection.Open();
+            string sql = "UPDATE `books` SET `title`=@title,`author`=@author,`releaseDate`=@release WHERE id=@id";
+            MySqlCommand cmd = new MySqlCommand( sql, conn.Connection);
+            var book = updatebook.GetType().GetProperties();
+            cmd.Parameters.AddWithValue("@id", id);
+           cmd.Parameters.AddWithValue("@title", book[0].GetValue(updatebook));
+            cmd.Parameters.AddWithValue("@author", book[1].GetValue(updatebook));
+            cmd.Parameters.AddWithValue("@release", book[2].GetValue(updatebook));
+            cmd.ExecuteNonQuery();
+           
+
+
+
         }
     }
 }
