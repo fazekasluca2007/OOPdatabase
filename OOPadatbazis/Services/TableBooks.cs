@@ -22,7 +22,7 @@ namespace OOPadatbazis.Services
             var book = newBook.GetType().GetProperties();
             cmd.Parameters.AddWithValue("@title", book[0].GetValue(newBook));
             cmd.Parameters.AddWithValue("@author", book[1].GetValue(newBook));
-            cmd.Parameters.AddWithValue("@releaseDate", book[2].GetValue(newBook));
+            cmd.Parameters.AddWithValue("@release", book[2].GetValue(newBook));
             cmd.ExecuteNonQuery();
             conn.Connection.Close();
             return book;

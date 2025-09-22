@@ -20,12 +20,32 @@ namespace OOPadatbazis
                 Console.WriteLine($"{book[0].Name}={book[0].GetValue(item)}, {book[1].Name}={book[1].GetValue(item)}");
 
             }*/
-            //Feladat2
+            /*Feladat2
             Console.Write("Kérem a rekord id-t: ");
             var item=sqlStatements.GetById(int.Parse(Console.ReadLine()));
             var book = item.GetType().GetProperties();
-            Console.WriteLine($"{book[1].Name}={book[1].GetValue(item)}");
-           
+            Console.WriteLine($"{book[1].Name}={book[1].GetValue(item)}");*/
+
+            Console.WriteLine("Kérem a könyv címét: ");
+            string cim=Console.ReadLine();
+            Console.WriteLine("Kérem a könyv szerzőjét: ");
+            string szerzo = Console.ReadLine();
+            Console.WriteLine("Kérem a könyv kiadási évét: ");
+            string datum = Console.ReadLine();
+
+            var book = new
+            {
+                Title = cim,
+                Author = szerzo,
+                Release = datum,
+
+            };
+
+            sqlStatements.AddNewRecord(book);
+
+
+
+
         }
     }
 }
